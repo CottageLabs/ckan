@@ -22,6 +22,7 @@ set_environment () {
   export CKAN_REDIS_URL=${CKAN_REDIS_URL}
   export CKAN_STORAGE_PATH=${CKAN_STORAGE_PATH}
   export CKAN_SITE_URL=${CKAN_SITE_URL}
+  export CKAN_MAX_UPLOAD_SIZE_MB=${CKAN_MAX_UPLOAD_SIZE_MB}
 }
 
 write_config () {
@@ -76,7 +77,7 @@ if [ -z "$CKAN_SOLR_URL" ]; then
     abort "ERROR: no CKAN_SOLR_URL specified and linked container called 'solr' was not found"
   fi
 fi
-    
+
 if [ -z "$CKAN_REDIS_URL" ]; then
   if ! CKAN_REDIS_URL=$(link_redis_url); then
     abort "ERROR: no CKAN_REDIS_URL specified and linked container called 'redis' was not found"
